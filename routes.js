@@ -2,14 +2,15 @@ const express = require("express");
 const router = express.Router();
 const pagesController = require("./controllers/pagesController");
 
-//muestra listado de usuarios
-router.get("/", pagesController.index);
 
 //muestra formulario
-router.get("/usuarios", pagesController.create);
+router.get("/", pagesController.create);
+
+//muestra listado de usuarios
+router.get("/usuarios", pagesController.index);
 
 //insertar usuario
-router.post("/usuarios", pagesController.store);
+router.post("/usuarios", pagesController.storeSupabase);
 
 
 
