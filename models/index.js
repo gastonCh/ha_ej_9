@@ -21,5 +21,3 @@ const conexion = new Sequelize(
 const User = UserBuilder(conexion, Model, DataTypes);
 
 module.exports = { conexion, User };
-
-

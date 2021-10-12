@@ -1,8 +1,8 @@
-const { createClient } = require("@supabase/supabase-js");
 const fs = require("fs");
+const path = require("path");
 const { User } = require("../models");
 const formidable = require("formidable");
-const path = require("path");
+const { createClient } = require("@supabase/supabase-js");
 
 const index = async (req, res) => {
   const users = await User.findAll();
@@ -29,7 +29,9 @@ const storeSupabase = async (req, res) =>{
 
     const newFileName = `img_${Date.now()}${ext}`;
 
-    const { data, error } = await sbClient.storage.from('avatars').upload(`public/${newFileName}`, fs.createReadStream(files.avatar.path), {
+    const { data, error } = await sbClient.storage
+    .from('avatars')
+    .upload(`public/${newFileName}`, fs.createReadStream(files.avatar.path), {
       cacheControl:'3600',
       upsert:false,
       contentType:files.avatar.type
